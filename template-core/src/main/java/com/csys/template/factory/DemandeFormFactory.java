@@ -21,21 +21,21 @@ public class DemandeFormFactory {
         return demandeForm;
     }
 
-    public static DemandeFormDTO demandeFormToDemandeFormDTO(DemandeForm demandeForm,boolean lazy) {
+    public static DemandeFormDTO demandeFormToDemandeFormDTO(DemandeForm demandeForm) {
         DemandeFormDTO demandeFormDTO = new DemandeFormDTO();
         demandeFormDTO.setCodeDemande(demandeForm.getDemandeFormPK().getCodeDemande());
         demandeFormDTO.setCodeForm(demandeForm.getDemandeFormPK().getCodeForm());
         demandeFormDTO.setCodeMenu(demandeForm.getDemandeFormPK().getCodeMenu());
         demandeFormDTO.setCodeModule(demandeForm.getDemandeFormPK().getCodeModule());
-        demandeFormDTO.setForm(FormFactory.formToFormDTO(demandeForm.getForm(),lazy));
+        demandeFormDTO.setForm(FormFactory.formToFormDTO(demandeForm.getForm()));
         demandeFormDTO.setValider(demandeForm.getValider());
         return demandeFormDTO;
     }
 
-    public static List<DemandeFormDTO> demandeFormToDemandeFormDTOs(List<DemandeForm> demandeForms,boolean lazy) {
+    public static List<DemandeFormDTO> demandeFormToDemandeFormDTOs(List<DemandeForm> demandeForms) {
         List<DemandeFormDTO> demandeFormDTOs = new ArrayList<>();
         demandeForms.forEach(x -> {
-            demandeFormDTOs.add(demandeFormToDemandeFormDTO(x,lazy));
+            demandeFormDTOs.add(demandeFormToDemandeFormDTO(x));
         });
         return demandeFormDTOs;
     }

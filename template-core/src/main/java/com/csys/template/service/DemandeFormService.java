@@ -16,92 +16,92 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional
 public class DemandeFormService {
-    
-    private final Logger log = LoggerFactory.getLogger(DemandeFormService.class);
-
-    private final DemandeFormRepository dfRepository;
-
-    public DemandeFormService(DemandeFormRepository demandeFormRepository) {
-       this.dfRepository=demandeFormRepository;
-    }
-    
-    /**
-   * Save a demandeFormDTO.
-   *
-   * @param demandeFormDTO
-   * @return the persisted entity
-   */
-    public DemandeFormDTO save(DemandeFormDTO demandeFormDTO) {
-     log.debug("Request to save DemandeForm: {}",demandeFormDTO);
-     DemandeForm df = DemandeFormFactory.demandeFormDTOToDemandeForm(demandeFormDTO);
-     df = dfRepository.save(df);
-     DemandeFormDTO resultDTO = DemandeFormFactory.demandeFormToDemandeFormDTO(df,false);
-     return resultDTO;
-    }
-    
-   /**
-   * Get one demandeFormDTO by id.
-   *
-   * @param dfpk the demandeFormpk of the entity
-   * @return the entity DTO
-   */
-    @Transactional(
-      readOnly = true
-    )
-    public DemandeFormDTO findDemandeFormDTO(DemandeFormPK dfpk) {
-        
-     log.debug("Request to get DemandeFormDTO: {}",dfpk);
-     DemandeForm df= dfRepository.findByDemandeFormPK(dfpk);
-     DemandeFormDTO dto = DemandeFormFactory.demandeFormToDemandeFormDTO(df,false);
-     return dto;
-    }
-    
-    /**
-    * Get one demandeFormDTO by id.
-    *
-    * @param dfpk the demandeFormpk of the entity
-    * @return the entity DTO
-    */
-    @Transactional(
-      readOnly = true
-    )
-    public DemandeForm findDemandeForm(DemandeFormPK dfpk) {
-        
-     log.debug("Request to get DemandeForm: {}",dfpk);
-     DemandeForm df= dfRepository.findByDemandeFormPK(dfpk);
-     return df;
-    }
-    
-    /**
-   * Get all the demandeForms.
-   *
-   * @return the the list of entities
-   */
-    @Transactional(
-      readOnly = true
-    )
-    public List<DemandeFormDTO> findAllDTO() {
-     log.debug("Request to get All DemandeForms");
-     List<DemandeForm> result= dfRepository.findAll();
-     
-     return DemandeFormFactory.demandeFormToDemandeFormDTOs(result,false);
-    }
-    
-    @Transactional(
-      readOnly = true
-    )
-    public List<DemandeForm> findAll() {
-     log.debug("Request to get All DemandeForms");
-     List<DemandeForm> result= dfRepository.findAll();
-     return (result);
-    }
-    
-    /**
-    * Delete classe by codeDemande.
-    * @param codeDemande the id of the entity
-    */
-    public void delete(String codeDemande) {
-     log.debug("Request to delete DemandeForm: {}",codeDemande);
-     dfRepository.deleteByDemandeFormPK_CodeDemande(codeDemande);
-    }
+//    
+//    private final Logger log = LoggerFactory.getLogger(DemandeFormService.class);
+//
+//    private final DemandeFormRepository dfRepository;
+//
+//    public DemandeFormService(DemandeFormRepository demandeFormRepository) {
+//       this.dfRepository=demandeFormRepository;
+//    }
+//    
+//    /**
+//   * Save a demandeFormDTO.
+//   *
+//   * @param demandeFormDTO
+//   * @return the persisted entity
+//   */
+//    public DemandeFormDTO save(DemandeFormDTO demandeFormDTO) {
+//     log.debug("Request to save DemandeForm: {}",demandeFormDTO);
+//     DemandeForm df = DemandeFormFactory.demandeFormDTOToDemandeForm(demandeFormDTO);
+//     df = dfRepository.save(df);
+//     DemandeFormDTO resultDTO = DemandeFormFactory.demandeFormToDemandeFormDTO(df);
+//     return resultDTO;
+//    }
+//    
+//   /**
+//   * Get one demandeFormDTO by id.
+//   *
+//   * @param dfpk the demandeFormpk of the entity
+//   * @return the entity DTO
+//   */
+//    @Transactional(
+//      readOnly = true
+//    )
+//    public DemandeFormDTO findDemandeFormDTO(DemandeFormPK dfpk) {
+//        
+//     log.debug("Request to get DemandeFormDTO: {}",dfpk);
+//     DemandeForm df= dfRepository.findByDemandeFormPK(dfpk);
+//     DemandeFormDTO dto = DemandeFormFactory.demandeFormToDemandeFormDTO(df);
+//     return dto;
+//    }
+//    
+//    /**
+//    * Get one demandeFormDTO by id.
+//    *
+//    * @param dfpk the demandeFormpk of the entity
+//    * @return the entity DTO
+//    */
+//    @Transactional(
+//      readOnly = true
+//    )
+//    public DemandeForm findDemandeForm(DemandeFormPK dfpk) {
+//        
+//     log.debug("Request to get DemandeForm: {}",dfpk);
+//     DemandeForm df= dfRepository.findByDemandeFormPK(dfpk);
+//     return df;
+//    }
+//    
+//    /**
+//   * Get all the demandeForms.
+//   *
+//   * @return the the list of entities
+//   */
+//    @Transactional(
+//      readOnly = true
+//    )
+//    public List<DemandeFormDTO> findAllDTO() {
+//     log.debug("Request to get All DemandeForms");
+//     List<DemandeForm> result= dfRepository.findAll();
+//     
+//     return DemandeFormFactory.demandeFormToDemandeFormDTOs(result);
+//    }
+//    
+//    @Transactional(
+//      readOnly = true
+//    )
+//    public List<DemandeForm> findAll() {
+//     log.debug("Request to get All DemandeForms");
+//     List<DemandeForm> result= dfRepository.findAll();
+//     return (result);
+//    }
+//    
+//    /**
+//    * Delete classe by codeDemande.
+//    * @param codeDemande the id of the entity
+//    */
+//    public void delete(String codeDemande) {
+//     log.debug("Request to delete DemandeForm: {}",codeDemande);
+//     dfRepository.deleteByDemandeFormPK_CodeDemande(codeDemande);
+//    }
 }

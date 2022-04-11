@@ -25,14 +25,22 @@ public class AccessControlDTO {
     @Size(max = 10)
     private String codemedecininfirmier;
     @NotNull
-    @Size(min = 1, max = 1)
-    private String actif;
+    private boolean actif;
     private Collection<ModuleDTO> moduleCollection;
     private Collection<AccessFormUserDTO> accessFormUserCollection;
     private Collection<DemandeDTO> demandeCollection;
     private GroupUserDTO groupUser;
     private Collection<AccessMenuUserDTO> accessMenuUserCollection;
+    private CliniqueDTO clinique;
 
+    public CliniqueDTO getClinique() {
+        return clinique;
+    }
+
+    public void setClinique(CliniqueDTO clinique) {
+        this.clinique = clinique;
+    }
+    
     public String getUserName() {
         return userName;
     }
@@ -65,13 +73,15 @@ public class AccessControlDTO {
         this.codemedecininfirmier = codemedecininfirmier;
     }
 
-    public String getActif() {
+    public boolean isActif() {
         return actif;
     }
 
-    public void setActif(String actif) {
+    public void setActif(boolean actif) {
         this.actif = actif;
     }
+
+    
 
     public Collection<ModuleDTO> getModuleCollection() {
         return moduleCollection;

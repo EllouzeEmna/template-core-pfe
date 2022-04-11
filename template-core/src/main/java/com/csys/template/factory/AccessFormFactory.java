@@ -33,23 +33,23 @@ public class AccessFormFactory {
         return accessForm;
     }
     
-    public static AccessFormDTO accessFormToAccessFormDTO(AccessForm accessForm,boolean lazy) {
+    public static AccessFormDTO accessFormToAccessFormDTO(AccessForm accessForm) {
         AccessFormDTO accessFormDTO = new AccessFormDTO();
         accessFormDTO.setCodeMenu(accessForm.getAccessFormPK().getCodeMenu());
         accessFormDTO.setControl(accessForm.getAccessFormPK().getControl());
         accessFormDTO.setForm(accessForm.getAccessFormPK().getForm());
-        accessFormDTO.setForm1(FormFactory.formToFormDTO(accessForm.getForm(),lazy));
-        accessFormDTO.setGroupUser(GroupUserFactory.groupUserToGroupUserDTO(accessForm.getGroupUser(),lazy));
+        accessFormDTO.setForm1(FormFactory.formToFormDTO(accessForm.getForm()));
+//        accessFormDTO.setGroupUser(GroupUserFactory.groupUserToGroupUserDTO(accessForm.getGroupUser()));
         accessFormDTO.setGrp(accessForm.getAccessFormPK().getGrp());
         accessFormDTO.setModule(accessForm.getAccessFormPK().getModule());
         accessFormDTO.setVisible(accessForm.getVisible());
         return accessFormDTO;
     }
     
-    public static List<AccessFormDTO> accessFormToAccessFormDTOs(List<AccessForm> accessForms,boolean lazy) {
+    public static List<AccessFormDTO> accessFormToAccessFormDTOs(List<AccessForm> accessForms) {
      List<AccessFormDTO> accessFormsDTO=new ArrayList<>();
      accessForms.forEach(x -> {
-      accessFormsDTO.add(accessFormToAccessFormDTO(x,lazy));
+      accessFormsDTO.add(accessFormToAccessFormDTO(x));
      } );
      return accessFormsDTO;
     }

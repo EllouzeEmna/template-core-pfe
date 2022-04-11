@@ -32,13 +32,13 @@ public class AccessFormUserFactory {
         return accessFormUser;
     }
     
-    public static AccessFormUserDTO accessFormUserToAccessFormUserDTO(AccessFormUser accessFormUser,boolean lazy) {
+    public static AccessFormUserDTO accessFormUserToAccessFormUserDTO(AccessFormUser accessFormUser) {
         AccessFormUserDTO accessFormUDTO = new AccessFormUserDTO();
-        accessFormUDTO.setAccessControl(AccessControlFactory.accessControlToAccessControlDTO(accessFormUser.getAccessControl(),lazy));
+        accessFormUDTO.setAccessControl(AccessControlFactory.accessControlToAccessControlDTO(accessFormUser.getAccessControl(),true));
         accessFormUDTO.setCodeMenu(accessFormUser.getAccessFormUserPK().getCodeMenu());
         accessFormUDTO.setControl(accessFormUser.getAccessFormUserPK().getControl());
         accessFormUDTO.setForm(accessFormUser.getAccessFormUserPK().getForm());
-        accessFormUDTO.setFormDTO(FormFactory.formToFormDTO(accessFormUser.getForm(),lazy));
+        accessFormUDTO.setFormDTO(FormFactory.formToFormDTO(accessFormUser.getForm()));
         accessFormUDTO.setModule(accessFormUser.getAccessFormUserPK().getModule());
         accessFormUDTO.setUser(accessFormUser.getAccessFormUserPK().getUser());
         accessFormUDTO.setVisible(accessFormUser.getVisible());
@@ -47,10 +47,10 @@ public class AccessFormUserFactory {
         return accessFormUDTO;
     }
     
-    public static List<AccessFormUserDTO> accessFormUserToAccessFormUserDTOs(List<AccessFormUser> accessFormUsers,boolean lazy) {
+    public static List<AccessFormUserDTO> accessFormUserToAccessFormUserDTOs(List<AccessFormUser> accessFormUsers) {
      List<AccessFormUserDTO> accessFormUsersDTO=new ArrayList<>();
      accessFormUsers.forEach(x -> {
-      accessFormUsersDTO.add(accessFormUserToAccessFormUserDTO(x,lazy));
+      accessFormUsersDTO.add(accessFormUserToAccessFormUserDTO(x));
      } );
      return accessFormUsersDTO;
     }

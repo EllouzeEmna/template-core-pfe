@@ -36,10 +36,10 @@ public class MenuPFactory {
         return menuP;
     }
     
-    public static MenuPDTO menuPToMenuPDTO(MenuP menuP,boolean lazy) {
+    public static MenuPDTO menuPToMenuPDTO(MenuP menuP) {
         MenuPDTO menuPDTO = new MenuPDTO();
-        menuPDTO.setAccessMenuCollection(AccessMenuFactory.accessMenuToAccessMenuDTOs((List<AccessMenu>) menuP.getAccessMenuCollection(),lazy));
-        menuPDTO.setAccessMenuUserCollection(AccessMenuUserFactory.accessMenuUserToAccessMenuUserDTOs((List<AccessMenuUser>) menuP.getAccessMenuUserCollection(),lazy));
+//        menuPDTO.setAccessMenuCollection(AccessMenuFactory.accessMenuToAccessMenuDTOs((List<AccessMenu>) menuP.getAccessMenuCollection()));
+//        menuPDTO.setAccessMenuUserCollection(AccessMenuUserFactory.accessMenuUserToAccessMenuUserDTOs((List<AccessMenuUser>) menuP.getAccessMenuUserCollection()));
         menuPDTO.setCodMnp(menuP.getMenuPPK().getCodMnp());
         menuPDTO.setCodemenu(menuP.getCodemenu());
         menuPDTO.setDesMenuP(menuP.getDesMenuP());
@@ -50,10 +50,10 @@ public class MenuPFactory {
         return menuPDTO;
     }
     
-    public static List<MenuPDTO> menuPToMenuPDTOs(List<MenuP> menuPs,boolean lazy) {
+    public static List<MenuPDTO> menuPToMenuPDTOs(List<MenuP> menuPs) {
      List<MenuPDTO> menuPsDTO=new ArrayList<>();
      menuPs.forEach(x -> {
-      menuPsDTO.add(menuPToMenuPDTO(x,lazy));
+      menuPsDTO.add(menuPToMenuPDTO(x));
      } );
      return menuPsDTO;
     }

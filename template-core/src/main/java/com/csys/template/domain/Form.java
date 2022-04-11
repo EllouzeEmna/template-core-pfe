@@ -13,7 +13,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -63,8 +62,9 @@ public class Form implements Serializable {
     private Collection<AccessFormUser> accessFormUserCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "form1")
     private Collection<AccessForm> accessFormCollection;
-    @ManyToOne
-    DemandeModule demandeModule;
+//    @ManyToOne
+//    DemandeModule demandeModule;
+    
     
     public Form() {
     }

@@ -13,7 +13,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -47,7 +46,7 @@ public class MenuP implements Serializable {
     @Size(min = 1, max = 500)
     @Column(name = "MnName", nullable = false, length = 500)
     private String mnName;
-    @Column(name = "order")
+    @Column(name = "[order]")
     private Integer order;
     @Size(max = 255)
     @Column(name = "logo", length = 255)
@@ -59,8 +58,7 @@ public class MenuP implements Serializable {
     private Collection<AccessMenu> accessMenuCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "menuP")
     private Collection<AccessMenuUser> accessMenuUserCollection;
-    @ManyToOne
-    DemandeModule demandeModule;
+   
     
     public Collection<AccessMenu> getAccessMenuCollection() {
         return accessMenuCollection;

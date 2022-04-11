@@ -7,11 +7,7 @@ package com.csys.template.factory;
 
 import com.csys.template.domain.DemandeModule;
 import com.csys.template.domain.DemandeModulePK;
-import com.csys.template.domain.Form;
-import com.csys.template.domain.MenuP;
 import com.csys.template.dto.DemandeModuleDTO;
-import com.csys.template.dto.FormDTO;
-import com.csys.template.dto.MenuPDTO;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,19 +27,19 @@ public class DemandeModuleFactory {
         return demandeModule;
     }
     
-    public static DemandeModuleDTO demandeModuleToDemandeModuleDTO(DemandeModule demandeModule,boolean lazy) {
+    public static DemandeModuleDTO demandeModuleToDemandeModuleDTO(DemandeModule demandeModule) {
         DemandeModuleDTO demandeModuleDTO = new DemandeModuleDTO();
         demandeModuleDTO.setCodeDemande(demandeModule.getDemandeModulePK().getCodeDemande());
         demandeModuleDTO.setNumModule(demandeModule.getDemandeModulePK().getNumModule());
-        demandeModuleDTO.setModule(ModuleFactory.moduleToModuleDTO(demandeModule.getModule(),lazy));
+        demandeModuleDTO.setModule(ModuleFactory.moduleToModuleDTO(demandeModule.getModule()));
         demandeModuleDTO.setValider(demandeModule.getValider());
         return demandeModuleDTO;
     }
     
-    public static List<DemandeModuleDTO> demandeModuleToDemandeModuleDTOs(List<DemandeModule> demandeModules,boolean lazy) {
+    public static List<DemandeModuleDTO> demandeModuleToDemandeModuleDTOs(List<DemandeModule> demandeModules) {
      List<DemandeModuleDTO> demandeModuleDTOs=new ArrayList<>();
      demandeModules.forEach(x -> {
-      demandeModuleDTOs.add(demandeModuleToDemandeModuleDTO(x,lazy));
+      demandeModuleDTOs.add(demandeModuleToDemandeModuleDTO(x));
      } );
      return demandeModuleDTOs;
     }

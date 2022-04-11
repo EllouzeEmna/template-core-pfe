@@ -11,6 +11,7 @@ import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -38,9 +39,13 @@ public class AccessMenuUser implements Serializable {
     @NotNull
     @Column(name = "personalise", nullable = false)
     private boolean personalise;
-    @JoinColumn(name = "User", referencedColumnName = "UserName", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name = "[User]", referencedColumnName = "UserName", nullable = false, insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private AccessControl accessControl;
+    @JoinColumns({
+        @JoinColumn(name = "Module", referencedColumnName = "Module", nullable = false, insertable = false, updatable = false)
+        , @JoinColumn(name = "MENU", referencedColumnName = "CodMnp", nullable = false, insertable = false, updatable = false)})
+ 
      @ManyToOne(optional = false)
     private MenuP menuP;
 

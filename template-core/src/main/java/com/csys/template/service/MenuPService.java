@@ -6,6 +6,7 @@
 package com.csys.template.service;
 
 import com.csys.template.domain.MenuP;
+import com.csys.template.domain.MenuPPK;
 import com.csys.template.dto.MenuPDTO;
 import com.csys.template.factory.MenuPFactory;
 import com.csys.template.repository.MenuPRepository;
@@ -25,10 +26,10 @@ public class MenuPService {
     
     private final Logger log = LoggerFactory.getLogger(MenuPService.class);
 
-    private final MenuPRepository mRepository;
+    private final MenuPRepository menuRepository;
 
     public MenuPService(MenuPRepository menuPRepository) {
-       this.mRepository=menuPRepository;
+       this.menuRepository=menuPRepository;
     }
     
     @Transactional(
@@ -36,9 +37,9 @@ public class MenuPService {
     )
     public List<MenuPDTO> findAllDTO() {
      log.debug("Request to get All DemandeForms");
-     List<MenuP> result= mRepository.findAll();
+     List<MenuP> result= menuRepository.findAll();
      
-     return MenuPFactory.menuPToMenuPDTOs(result,false);
+     return MenuPFactory.menuPToMenuPDTOs(result);
     }
     
     @Transactional(
@@ -46,8 +47,20 @@ public class MenuPService {
     )
     public List<MenuP> findAll() {
      log.debug("Request to get All DemandeForms");
-     List<MenuP> result= mRepository.findAll();
+     List<MenuP> result= menuRepository.findAll();
      return (result);
     }
     
+    @Transactional(
+      readOnly = true
+    )
+    public MenuPDTO findMenuPDTO(String module, String codMnp) {
+     MenuPPK menuPPK=new MenuPPK();
+     menuPPK.setCodMnp(codMnp);
+     menuPPK.setModule(module);
+     log.debug("Request to get MenuPDTO: {}",menuPPK);
+     MenuP menuP= menuRepository.findOne(menuPPK);
+     MenuPDTO menuPDTO = MenuPFactory.menuPToMenuPDTO(menuP);
+     return menuPDTO;
+    }
 }

@@ -6,9 +6,6 @@
 package com.csys.template.domain;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collection;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -16,7 +13,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
@@ -42,26 +38,6 @@ public class DemandeModule implements Serializable {
     @JoinColumn(name = "num_module", referencedColumnName = "NumModule", nullable = false, insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Module module;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "demandeModule")
-    private Collection<MenuP> listMenu=new ArrayList<MenuP>();
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "demandeModule")
-    private Collection<Form> listForm=new ArrayList<Form>();
-
-    public Collection<MenuP> getListMenu() {
-        return listMenu;
-    }
-
-    public void setListMenu(Collection<MenuP> listMenu) {
-        this.listMenu = listMenu;
-    }
-
-    public Collection<Form> getListForm() {
-        return listForm;
-    }
-
-    public void setListForm(Collection<Form> listForm) {
-        this.listForm = listForm;
-    }
     
     public DemandeModule() {
     }

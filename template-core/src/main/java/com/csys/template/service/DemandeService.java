@@ -6,20 +6,9 @@
 package com.csys.template.service;
 
 import com.csys.template.domain.Demande;
-import com.csys.template.domain.DemandeForm;
-import com.csys.template.domain.DemandeMenu;
-import com.csys.template.domain.DemandeModule;
+import com.csys.template.domain.EtatDemandeEnum;
 import com.csys.template.dto.DemandeDTO;
-import com.csys.template.dto.DemandeFormDTO;
-import com.csys.template.dto.DemandeMenuDTO;
-import com.csys.template.dto.DemandeModuleDTO;
 import com.csys.template.factory.DemandeFactory;
-import com.csys.template.factory.DemandeFormFactory;
-import com.csys.template.factory.DemandeMenuFactory;
-import com.csys.template.factory.DemandeModuleFactory;
-import com.csys.template.repository.DemandeFormRepository;
-import com.csys.template.repository.DemandeMenuRepository;
-import com.csys.template.repository.DemandeModuleRepository;
 import com.csys.template.repository.DemandeRepository;
 import java.util.List;
 import org.slf4j.Logger;
@@ -37,31 +26,38 @@ public class DemandeService {
 
     private final Logger log = LoggerFactory.getLogger(DemandeService.class);
 
-    private final DemandeRepository dRepository;
-    private DemandeFormRepository dFormRepository;
-    private DemandeMenuRepository dMenuRepository;
-    private DemandeModuleRepository dModulRepository;
+    private final DemandeRepository demandeRepository;
 
     public DemandeService(DemandeRepository demandeRepository) {
-        this.dRepository = demandeRepository;
+        this.demandeRepository = demandeRepository;
     }
 
     @Transactional(
             readOnly = true
     )
+    public List<DemandeDTO> findAllDTOByEtat(boolean lazy,EtatDemandeEnum etat) {
+        log.debug("Request to get All Demandes");
+        List<Demande> result = demandeRepository.findByEtat(etat);
+        
+        return DemandeFactory.demandeToDemandeDTOs(result, lazy);
+    }
+    
+    @Transactional(
+            readOnly = true
+    )
     public List<DemandeDTO> findAllDTO(boolean lazy) {
         log.debug("Request to get All Demandes");
-        List<Demande> result = dRepository.findAll();
-
+        List<Demande> result = demandeRepository.findAll();
+        
         return DemandeFactory.demandeToDemandeDTOs(result, lazy);
     }
 
     @Transactional(
             readOnly = true
     )
-    public List<Demande> findAll() {
+    public List<Demande> findAllByEtat(EtatDemandeEnum etat) {
         log.debug("Request to get All Demandes");
-        List<Demande> result = dRepository.findAll();
+        List<Demande> result = demandeRepository.findByEtat(etat);
         return (result);
     }
 
@@ -70,7 +66,7 @@ public class DemandeService {
     )
     public Demande findDemande(String codeDemande) {
         log.debug("Request to get Demande: {}", codeDemande);
-        Demande d = dRepository.findByCodeDemande(codeDemande);
+        Demande d = demandeRepository.findByCodeDemande(codeDemande);
         return d;
     }
 
@@ -79,21 +75,32 @@ public class DemandeService {
     )
     public DemandeDTO findDemandeDTO(String codeDemande) {
         log.debug("Request to get DemandeDTO: {}", codeDemande);
-        Demande d = dRepository.findByCodeDemande(codeDemande);
+        Demande d = demandeRepository.findByCodeDemande(codeDemande);
         DemandeDTO dto = DemandeFactory.demandeToDemandeDTO(d, false);
         return dto;
     }
 
-    public DemandeDTO saveDTO(DemandeDTO demandeDTO, DemandeFormDTO demandeFormDTO, DemandeMenuDTO demandeMenuDTO, DemandeModuleDTO demandeModuleDTO) {
+    public DemandeDTO saveDTO(DemandeDTO demandeDTO) {
         log.debug("Request to save Demande: {}", demandeDTO);
         Demande d = DemandeFactory.demandeDTOToDemande(demandeDTO);
-        d = dRepository.save(d);
+        d = demandeRepository.save(d);
+        DemandeDTO resultDTO = DemandeFactory.demandeToDemandeDTO(d, true);
+        return resultDTO;
+    }
+    
+    public DemandeDTO updateDTO(DemandeDTO demandeDTO) {
+        log.debug("Request to update Demande: {}", demandeDTO);
+        Demande d = DemandeFactory.demandeDTOToDemande(demandeDTO);
+        if(demandeRepository.findByCodeDemande(d.getCodeDemande())!=null){
+        d = demandeRepository.save(d);
+        }
         DemandeDTO resultDTO = DemandeFactory.demandeToDemandeDTO(d, true);
         return resultDTO;
     }
 
     public void delete(String codeDemande) {
         log.debug("Request to delete Demande: {}", codeDemande);
-        dRepository.deleteByDemandePK_CodeDemande(codeDemande);
+        if (findDemande(codeDemande).getEtat()==EtatDemandeEnum.NonValide)
+        {demandeRepository.deleteByCodeDemande(codeDemande);}
     }
 }

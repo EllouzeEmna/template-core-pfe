@@ -30,20 +30,20 @@ public class DemandeMenuFactory {
         return demandeMenu;
     }
 
-    public static DemandeMenuDTO demandeMenuToDemandeMenuDTO(DemandeMenu demandeMenu,boolean lazy) {
+    public static DemandeMenuDTO demandeMenuToDemandeMenuDTO(DemandeMenu demandeMenu) {
         DemandeMenuDTO demandeMenuDTO = new DemandeMenuDTO();
         demandeMenuDTO.setCodeDemande(demandeMenu.getDemandeMenuPK().getCodeDemande());
         demandeMenuDTO.setCodeMenu(demandeMenu.getDemandeMenuPK().getCodeMenu());
         demandeMenuDTO.setCodeModule(demandeMenu.getDemandeMenuPK().getCodeModule());
-        demandeMenuDTO.setMenuP(MenuPFactory.menuPToMenuPDTO(demandeMenu.getMenuP(),lazy));
+        demandeMenuDTO.setMenuP(MenuPFactory.menuPToMenuPDTO(demandeMenu.getMenuP()));
         demandeMenuDTO.setValider(demandeMenu.getValider());
         return demandeMenuDTO;
     }
 
-    public static List<DemandeMenuDTO> demandeMenuToDemandeMenuDTOs(List<DemandeMenu> demandeMenus,boolean lazy) {
+    public static List<DemandeMenuDTO> demandeMenuToDemandeMenuDTOs(List<DemandeMenu> demandeMenus) {
         List<DemandeMenuDTO> demandeMenuDTOs = new ArrayList<>();
         demandeMenus.forEach(x -> {
-            demandeMenuDTOs.add(demandeMenuToDemandeMenuDTO(x,lazy));
+            demandeMenuDTOs.add(demandeMenuToDemandeMenuDTO(x));
         });
         return demandeMenuDTOs;
     }

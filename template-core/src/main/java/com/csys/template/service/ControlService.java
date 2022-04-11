@@ -6,9 +6,12 @@
 package com.csys.template.service;
 
 import com.csys.template.domain.AccessControl;
+import com.csys.template.domain.QAccessControl;
 import com.csys.template.dto.AccessControlDTO;
 import com.csys.template.factory.AccessControlFactory;
 import com.csys.template.repository.AccessControleRepository;
+import com.csys.template.util.Preconditions;
+import com.csys.template.util.WhereClauseBuilder;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,32 +25,41 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional
 public class ControlService {
-    
+
     private final Logger log = LoggerFactory.getLogger(ControlService.class);
 
-    private final AccessControleRepository aConRepository;
+    private final AccessControleRepository accessControlRepository;
 
-    public ControlService(AccessControleRepository aCRepository) {
-       this.aConRepository=aCRepository;
+    public ControlService(AccessControleRepository accessControlRepository) {
+        this.accessControlRepository = accessControlRepository;
     }
-    
+
     @Transactional(
-      readOnly = true
+            readOnly = true
     )
-    public List<AccessControlDTO> findAllDTO() {
-     log.debug("Request to get All DemandeForms");
-     List<AccessControl> result= aConRepository.findAll();
-     
-     return AccessControlFactory.accessControlToAccessControlDTOs(result,false);
+    public List<AccessControlDTO> findAllDTO(Boolean[] actifs, Boolean[] personalises, String group) {
+        log.debug("Request to get All DemandeForms");
+        QAccessControl qAccessControl = QAccessControl.accessControl;
+        WhereClauseBuilder builder;
+        builder = new WhereClauseBuilder()
+                .optionalAnd(actifs, () -> qAccessControl.actif.in(actifs))
+                .optionalAnd(personalises, () -> qAccessControl.accessMenuUserCollection.any().personalise.in(personalises))
+                .optionalAnd(group, () -> qAccessControl.groupUser().grp.eq(group));
+        List<AccessControl> result = (List<AccessControl>) accessControlRepository.findAll(builder);
+
+        return AccessControlFactory.accessControlToAccessControlDTOs(result, true);
     }
-    
+
     @Transactional(
-      readOnly = true
+            readOnly = true
     )
-    public List<AccessControl> findAll() {
-     log.debug("Request to get All DemandeForms");
-     List<AccessControl> result= aConRepository.findAll();
-     return (result);
+    public AccessControlDTO findAccessControlDTO(String userName) {
+
+        log.debug("Request to get AccessControlDTO: {}", userName);
+        AccessControl accessControl = accessControlRepository.findOne(userName);
+        Preconditions.checkBusinessLogique(accessControl != null, "L'utilasateur est inexistant.");
+        AccessControlDTO accessControlDTO = AccessControlFactory.accessControlToAccessControlDTO(accessControl, false);
+        return accessControlDTO;
     }
-    
+
 }

@@ -37,13 +37,13 @@ public class ModuleFactory {
         return module;
     }
     
-    public static ModuleDTO moduleToModuleDTO(Module module,boolean lazy) {
+    public static ModuleDTO moduleToModuleDTO(Module module) {
         ModuleDTO moduleDTO = new ModuleDTO();
-        moduleDTO.setAccessControlCollection(AccessControlFactory.accessControlToAccessControlDTOs((List<AccessControl>) module.getAccessControlCollection(),lazy));
+//        moduleDTO.setAccessControlCollection(AccessControlFactory.accessControlToAccessControlDTOs((List<AccessControl>) module.getAccessControlCollection()));
         moduleDTO.setAfficher(module.getAfficher());
         moduleDTO.setChemin(module.getChemin());
         moduleDTO.setDesModule(module.getDesModule());
-        moduleDTO.setGroupUserCollection(GroupUserFactory.groupUserToGroupUserDTOs((List<GroupUser>) module.getGroupUserCollection(),lazy));
+//        moduleDTO.setGroupUserCollection(GroupUserFactory.groupUserToGroupUserDTOs((List<GroupUser>) module.getGroupUserCollection()));
         moduleDTO.setImage(module.getImage());
         moduleDTO.setNomImage(module.getNomImage());
         moduleDTO.setNumModule(module.getNumModule());
@@ -53,10 +53,10 @@ public class ModuleFactory {
         return moduleDTO;
     }
     
-    public static List<ModuleDTO> moduleToModuleDTOs(List<Module> modules,boolean lazy) {
+    public static List<ModuleDTO> moduleToModuleDTOs(List<Module> modules) {
      List<ModuleDTO> modulesDTO=new ArrayList<>();
      modules.forEach(x -> {
-      modulesDTO.add(moduleToModuleDTO(x,lazy));
+      modulesDTO.add(moduleToModuleDTO(x));
      } );
      return modulesDTO;
     }

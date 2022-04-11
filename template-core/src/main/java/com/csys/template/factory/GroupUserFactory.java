@@ -5,7 +5,6 @@
  */
 package com.csys.template.factory;
 
-import com.csys.template.domain.AccessControl;
 import com.csys.template.domain.AccessForm;
 import com.csys.template.domain.AccessMenu;
 import com.csys.template.domain.Demande;
@@ -39,23 +38,23 @@ public class GroupUserFactory {
         return groupUser;
     }
     
-    public static GroupUserDTO groupUserToGroupUserDTO(GroupUser groupUser,boolean lazy) {
+    public static GroupUserDTO groupUserToGroupUserDTO(GroupUser groupUser) {
         GroupUserDTO groupDTO = new GroupUserDTO();
-        groupDTO.setAccessControlCollection(AccessControlFactory.accessControlToAccessControlDTOs((List<AccessControl>) groupUser.getAccessControlCollection(),lazy));
-        groupDTO.setAccessFormCollection(AccessFormFactory.accessFormToAccessFormDTOs((List<AccessForm>) groupUser.getAccessFormCollection(),lazy));
-        groupDTO.setAccessMenuCollection(AccessMenuFactory.accessMenuToAccessMenuDTOs((List<AccessMenu>) groupUser.getAccessMenuCollection(),lazy));
+//        groupDTO.setAccessControlCollection(AccessControlFactory.accessControlToAccessControlDTOs((List<AccessControl>) groupUser.getAccessControlCollection()));
+        groupDTO.setAccessFormCollection(AccessFormFactory.accessFormToAccessFormDTOs((List<AccessForm>) groupUser.getAccessFormCollection()));
+        groupDTO.setAccessMenuCollection(AccessMenuFactory.accessMenuToAccessMenuDTOs((List<AccessMenu>) groupUser.getAccessMenuCollection()));
         groupDTO.setActif(groupUser.getActif());
-        groupDTO.setDemandeCollection(DemandeFactory.demandeToDemandeDTOs((List<Demande>) groupUser.getDemandeCollection(),lazy));
+        groupDTO.setDemandeCollection(DemandeFactory.demandeToDemandeDTOs((List<Demande>) groupUser.getDemandeCollection(),false));
         groupDTO.setDescription(groupUser.getDescription());
         groupDTO.setGrp(groupUser.getGrp());
-        groupDTO.setModuleCollection(ModuleFactory.moduleToModuleDTOs((List<Module>) groupUser.getModuleCollection(),lazy));
+        groupDTO.setModuleCollection(ModuleFactory.moduleToModuleDTOs((List<Module>) groupUser.getModuleCollection()));
         return groupDTO;
     }
     
-    public static List<GroupUserDTO> groupUserToGroupUserDTOs(List<GroupUser> groupUsers,boolean lazy) {
+    public static List<GroupUserDTO> groupUserToGroupUserDTOs(List<GroupUser> groupUsers) {
      List<GroupUserDTO> groupUsersDTO=new ArrayList<>();
      groupUsers.forEach(x -> {
-      groupUsersDTO.add(groupUserToGroupUserDTO(x,lazy));
+      groupUsersDTO.add(groupUserToGroupUserDTO(x));
      } );
      return groupUsersDTO;
     }

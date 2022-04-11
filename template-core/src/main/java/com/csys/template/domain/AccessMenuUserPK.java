@@ -27,7 +27,7 @@ public class AccessMenuUserPK implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 20)
-    @Column(name = "User", nullable = false, length = 20)
+    @Column(name = "[User]", nullable = false, length = 20)
     private String user;
     @Basic(optional = false)
     @NotNull

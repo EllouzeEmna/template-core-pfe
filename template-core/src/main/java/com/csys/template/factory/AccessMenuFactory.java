@@ -25,30 +25,28 @@ public class AccessMenuFactory {
         accessMenuPK.setMenu(accessMenuDTO.getMenu());
         accessMenuPK.setModule(accessMenuDTO.getModule());
         accessMenu.setAccessMenuPK(accessMenuPK);
-        accessMenu.setGroupUser(GroupUserFactory.groupUserDTOToGroupUser(accessMenuDTO.getGroupUser()));
-        accessMenu.setMenuP(MenuPFactory.menuPDTOToMenuP(accessMenuDTO.getMenuP()));
+//        accessMenu.setGroupUser(GroupUserFactory.groupUserDTOToGroupUser(accessMenuDTO.getGroupUser()));
+//        accessMenu.setMenuP(MenuPFactory.menuPDTOToMenuP(accessMenuDTO.getMenuP()));
         accessMenu.setVisible(accessMenuDTO.isVisible());
         return accessMenu;
     }
     
-    public static AccessMenuDTO accessMenuToAccessMenuDTO(AccessMenu accessMenu,boolean lazy) {
+    public static AccessMenuDTO accessMenuToAccessMenuDTO(AccessMenu accessMenu) {
         AccessMenuDTO accessMenuDTO = new AccessMenuDTO();
-        accessMenuDTO.setGroupUser(GroupUserFactory.groupUserToGroupUserDTO(accessMenu.getGroupUser(),lazy));
+//        accessMenuDTO.setGroupUser(GroupUserFactory.groupUserToGroupUserDTO(accessMenu.getGroupUser()));
         accessMenuDTO.setGrp(accessMenu.getAccessMenuPK().getGrp());
         accessMenuDTO.setMenu(accessMenu.getAccessMenuPK().getMenu());
-        accessMenuDTO.setMenuP(MenuPFactory.menuPToMenuPDTO(accessMenu.getMenuP(),lazy));
+//        accessMenuDTO.setMenuP(MenuPFactory.menuPToMenuPDTO(accessMenu.getMenuP()));
         accessMenuDTO.setModule(accessMenu.getAccessMenuPK().getModule());
         accessMenuDTO.setVisible(accessMenu.getVisible());
-//        dfDTO.setDemandeFormPK(demandeForm.getDemandeFormPK());
-//        dfDTO.setModule(demandeForm.getModule());
        
         return accessMenuDTO;
     }
     
-    public static List<AccessMenuDTO> accessMenuToAccessMenuDTOs(List<AccessMenu> accessMenus,boolean lazy) {
+    public static List<AccessMenuDTO> accessMenuToAccessMenuDTOs(List<AccessMenu> accessMenus) {
      List<AccessMenuDTO> accessMenusDTO=new ArrayList<>();
      accessMenus.forEach(x -> {
-      accessMenusDTO.add(accessMenuToAccessMenuDTO(x,lazy));
+      accessMenusDTO.add(accessMenuToAccessMenuDTO(x));
      } );
      return accessMenusDTO;
     }

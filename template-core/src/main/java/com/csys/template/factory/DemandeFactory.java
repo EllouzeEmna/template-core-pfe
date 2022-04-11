@@ -36,24 +36,25 @@ public class DemandeFactory {
         demande.setDemandeFormCollection(DemandeFormFactory.demandeFormDTOToDemandeForms((List<DemandeFormDTO>) demandeDTO.getDemandeFormCollection()));
         demande.setDemandeMenuCollection(DemandeMenuFactory.demandeMenuDTOToDemandeMenus((List<DemandeMenuDTO>) demandeDTO.getDemandeMenuCollection()));
         demande.setDemandeModuleCollection(DemandeModuleFactory.demandeModuleDTOToDemandeModules((List<DemandeModuleDTO>) demandeDTO.getDemandeModuleCollection()));
+        demande.setEtat(demandeDTO.getEtat());
         return demande;
     }
 
     public static DemandeDTO demandeToDemandeDTO(Demande demande, boolean lazy) {
         DemandeDTO demandeDTO = new DemandeDTO();
-        demandeDTO.setAccessControl(AccessControlFactory.accessControlToAccessControlDTO(demande.getAccessControl(),lazy));
+        demandeDTO.setAccessControl(AccessControlFactory.accessControlToAccessControlDTO(demande.getAccessControl(),true));
         demandeDTO.setCodeDemande(demande.getCodeDemande());
         demandeDTO.setDateCreation(demande.getDateCreation());
         demandeDTO.setDateValidation(demande.getDateValidation());
-        demandeDTO.setGroupUser(GroupUserFactory.groupUserToGroupUserDTO(demande.getGroupUser(),lazy));
+        demandeDTO.setGroupUser(GroupUserFactory.groupUserToGroupUserDTO(demande.getGroupUser()));
         demandeDTO.setMessage(demande.getMessage());
         demandeDTO.setUserCreate(demande.getUserCreate());
         demandeDTO.setUserValidation(demande.getUserValidation());
-//        demandeDTO.setValider(demande.getValider());
+//        demandeDTO.setEtat(demande.getEtat());
         if (!lazy) {
-            demandeDTO.setDemandeFormCollection(DemandeFormFactory.demandeFormToDemandeFormDTOs((List<DemandeForm>) demande.getDemandeFormCollection(),lazy));
-            demandeDTO.setDemandeMenuCollection(DemandeMenuFactory.demandeMenuToDemandeMenuDTOs((List<DemandeMenu>) demande.getDemandeMenuCollection(),lazy));
-            demandeDTO.setDemandeModuleCollection(DemandeModuleFactory.demandeModuleToDemandeModuleDTOs((List<DemandeModule>) demande.getDemandeModuleCollection(),lazy));
+            demandeDTO.setDemandeFormCollection(DemandeFormFactory.demandeFormToDemandeFormDTOs((List<DemandeForm>) demande.getDemandeFormCollection()));
+            demandeDTO.setDemandeMenuCollection(DemandeMenuFactory.demandeMenuToDemandeMenuDTOs((List<DemandeMenu>) demande.getDemandeMenuCollection()));
+            demandeDTO.setDemandeModuleCollection(DemandeModuleFactory.demandeModuleToDemandeModuleDTOs((List<DemandeModule>) demande.getDemandeModuleCollection()));
         }
 
         return demandeDTO;

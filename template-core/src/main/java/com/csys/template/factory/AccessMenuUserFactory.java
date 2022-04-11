@@ -32,11 +32,11 @@ public class AccessMenuUserFactory {
         return accessMenuUser;
     }
     
-    public static AccessMenuUserDTO accessMenuUserToAccessMenuUserDTO(AccessMenuUser accessMenuUser,boolean lazy) {
+    public static AccessMenuUserDTO accessMenuUserToAccessMenuUserDTO(AccessMenuUser accessMenuUser) {
         AccessMenuUserDTO accessMenuUserDTO = new AccessMenuUserDTO();
-        accessMenuUserDTO.setAccessControl(AccessControlFactory.accessControlToAccessControlDTO(accessMenuUser.getAccessControl(),lazy));
+        accessMenuUserDTO.setAccessControl(AccessControlFactory.accessControlToAccessControlDTO(accessMenuUser.getAccessControl(),true));
         accessMenuUserDTO.setMenu(accessMenuUser.getAccessMenuUserPK().getMenu());
-        accessMenuUserDTO.setMenuP(MenuPFactory.menuPToMenuPDTO(accessMenuUser.getMenuP(),lazy));
+        accessMenuUserDTO.setMenuP(MenuPFactory.menuPToMenuPDTO(accessMenuUser.getMenuP()));
         accessMenuUserDTO.setModule(accessMenuUser.getAccessMenuUserPK().getModule());
         accessMenuUserDTO.setPersonalise(accessMenuUser.getPersonalise());
         accessMenuUserDTO.setUser(accessMenuUser.getAccessMenuUserPK().getUser());
@@ -47,10 +47,10 @@ public class AccessMenuUserFactory {
         return accessMenuUserDTO;
     }
     
-    public static List<AccessMenuUserDTO> accessMenuUserToAccessMenuUserDTOs(List<AccessMenuUser> accessMenuUsers,boolean lazy) {
+    public static List<AccessMenuUserDTO> accessMenuUserToAccessMenuUserDTOs(List<AccessMenuUser> accessMenuUsers) {
      List<AccessMenuUserDTO> accessMenuUsersDTO=new ArrayList<>();
      accessMenuUsers.forEach(x -> {
-      accessMenuUsersDTO.add(accessMenuUserToAccessMenuUserDTO(x,lazy));
+      accessMenuUsersDTO.add(accessMenuUserToAccessMenuUserDTO(x));
      } );
      return accessMenuUsersDTO;
     }

@@ -6,6 +6,7 @@
 package com.csys.template.service;
 
 import com.csys.template.domain.Form;
+import com.csys.template.domain.FormPK;
 import com.csys.template.dto.FormDTO;
 import com.csys.template.factory.FormFactory;
 import com.csys.template.repository.FormRepository;
@@ -25,20 +26,20 @@ public class FormService {
     
     private final Logger log = LoggerFactory.getLogger(FormService.class);
 
-    private final FormRepository fRepository;
+    private final FormRepository formRepository;
 
     public FormService(FormRepository formRepository) {
-       this.fRepository=formRepository;
+       this.formRepository=formRepository;
     }
     
     @Transactional(
       readOnly = true
     )
     public List<FormDTO> findAllDTO() {
-     log.debug("Request to get All DemandeForms");
-     List<Form> result= fRepository.findAll();
+     log.debug("Request to get All Form");
+     List<Form> result= formRepository.findAll();
      
-     return FormFactory.formToFormDTOs(result,false);
+     return FormFactory.formToFormDTOs(result);
     }
     
     @Transactional(
@@ -46,8 +47,23 @@ public class FormService {
     )
     public List<Form> findAll() {
      log.debug("Request to get All DemandeForms");
-     List<Form> result= fRepository.findAll();
+     List<Form> result= formRepository.findAll();
      return (result);
+    }
+    
+    @Transactional(
+      readOnly = true
+    )
+    public FormDTO findFormDTO(String module,String form,String control,String codeMenu) {
+     FormPK formPK=new FormPK();
+     formPK.setCodeMenu(codeMenu);
+     formPK.setControl(control);
+     formPK.setForm(form);
+     formPK.setModule(module);
+     log.debug("Request to get FormDTO: {}",formPK);
+     Form form1= formRepository.findOne(formPK);
+     FormDTO formDTO = FormFactory.formToFormDTO(form1);
+     return formDTO;
     }
     
 }

@@ -6,6 +6,8 @@
 package com.csys.template.repository;
 
 import com.csys.template.domain.Demande;
+import com.csys.template.domain.EtatDemandeEnum;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,7 +19,10 @@ public interface DemandeRepository extends JpaRepository<Demande, String> {
 
     public Demande findByCodeDemande(String codeDemande);
 
+   
     @Transactional
-    public void deleteByDemandePK_CodeDemande(String codeDemande);
+    public void deleteByCodeDemande(String codeDemande);
+
+    public List<Demande> findByEtat(EtatDemandeEnum etat);
 
 }

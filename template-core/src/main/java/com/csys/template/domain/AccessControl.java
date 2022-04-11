@@ -29,7 +29,7 @@ import javax.validation.constraints.Size;
  * @author 21694
  */
 @Entity
-@Table(name = "Access Control", uniqueConstraints = {
+@Table(name = "[Access Control]", uniqueConstraints = {
     @UniqueConstraint(columnNames = {"UserName", "Grp", "Description"})})
 @NamedQueries({
     @NamedQuery(name = "AccessControl.findAll", query = "SELECT a FROM AccessControl a")})
@@ -53,11 +53,10 @@ public class AccessControl implements Serializable {
     private String codemedecininfirmier;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 1)
-    @Column(name = "Actif", nullable = false, length = 1)
-    private String actif;
+    @Column(name = "Actif", nullable = false)
+    private boolean actif;
     @JoinTable(name = "Access_Module_user", joinColumns = {
-        @JoinColumn(name = "user", referencedColumnName = "UserName", nullable = false)}, inverseJoinColumns = {
+        @JoinColumn(name = "[user]", referencedColumnName = "UserName", nullable = false)}, inverseJoinColumns = {
         @JoinColumn(name = "module", referencedColumnName = "NumModule", nullable = false)})
     @ManyToMany
     private Collection<Module> moduleCollection;
@@ -70,7 +69,18 @@ public class AccessControl implements Serializable {
     private GroupUser groupUser;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "accessControl")
     private Collection<AccessMenuUser> accessMenuUserCollection;
+    @JoinColumn(name = "code_clinique", referencedColumnName = "code_clinique")
+    @ManyToOne
+    private Clinique clinique;
 
+    public Clinique getClinique() {
+        return clinique;
+    }
+
+    public void setClinique(Clinique clinique) {
+        this.clinique = clinique;
+    }
+    
     public AccessControl() {
     }
 
@@ -78,10 +88,7 @@ public class AccessControl implements Serializable {
         this.userName = userName;
     }
 
-    public AccessControl(String userName, String actif) {
-        this.userName = userName;
-        this.actif = actif;
-    }
+    
 
     public String getUserName() {
         return userName;
@@ -115,13 +122,15 @@ public class AccessControl implements Serializable {
         this.codemedecininfirmier = codemedecininfirmier;
     }
 
-    public String getActif() {
+    public boolean isActif() {
         return actif;
     }
 
-    public void setActif(String actif) {
+    public void setActif(boolean actif) {
         this.actif = actif;
     }
+
+   
 
     public Collection<Module> getModuleCollection() {
         return moduleCollection;

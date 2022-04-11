@@ -5,15 +5,16 @@
  */
 package com.csys.template.repository;
 
-import com.csys.template.domain.Form;
-import com.csys.template.domain.FormPK;
 import com.csys.template.domain.GroupUser;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.querydsl.QueryDslPredicateExecutor;
 
 /**
  *
  * @author 21694
  */
-public interface GroupUserRepository extends JpaRepository<GroupUser, String>  {
+public interface GroupUserRepository extends JpaRepository<GroupUser, String> ,QueryDslPredicateExecutor<GroupUser> {
+
+    public GroupUser findByGrp(String grp);
     
 }

@@ -5,8 +5,6 @@
  */
 package com.csys.template.factory;
 
-import com.csys.template.domain.AccessForm;
-import com.csys.template.domain.AccessFormUser;
 import com.csys.template.domain.Form;
 import com.csys.template.domain.FormPK;
 import com.csys.template.dto.AccessFormDTO;
@@ -41,10 +39,10 @@ public class FormFactory {
         return form;
     }
     
-    public static FormDTO formToFormDTO(Form form,boolean lazy) {
+    public static FormDTO formToFormDTO(Form form) {
         FormDTO formDTO = new FormDTO();
-        formDTO.setAccessFormCollection(AccessFormFactory.accessFormToAccessFormDTOs((List<AccessForm>) form.getAccessFormCollection(),lazy));
-        formDTO.setAccessFormUserCollection(AccessFormUserFactory.accessFormUserToAccessFormUserDTOs((List<AccessFormUser>) form.getAccessFormUserCollection(),lazy));
+//        formDTO.setAccessFormCollection(AccessFormFactory.accessFormToAccessFormDTOs((List<AccessForm>) form.getAccessFormCollection()));
+//        formDTO.setAccessFormUserCollection(AccessFormUserFactory.accessFormUserToAccessFormUserDTOs((List<AccessFormUser>) form.getAccessFormUserCollection()));
         formDTO.setCodeMenu(form.getFormPK().getCodeMenu());
         formDTO.setControl(form.getFormPK().getControl());
         formDTO.setForm(form.getFormPK().getForm());
@@ -58,10 +56,10 @@ public class FormFactory {
         return formDTO;
     }
     
-    public static List<FormDTO> formToFormDTOs(List<Form> forms,boolean lazy) {
+    public static List<FormDTO> formToFormDTOs(List<Form> forms) {
      List<FormDTO> formsDTO=new ArrayList<>();
      forms.forEach(x -> {
-      formsDTO.add(formToFormDTO(x,lazy));
+      formsDTO.add(formToFormDTO(x));
      } );
      return formsDTO;
     }

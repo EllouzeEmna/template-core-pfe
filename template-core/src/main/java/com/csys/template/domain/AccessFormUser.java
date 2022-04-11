@@ -35,7 +35,7 @@ public class AccessFormUser implements Serializable {
     @NotNull
     @Column(name = "Visible", nullable = false)
     private boolean visible;
-    @JoinColumn(name = "User", referencedColumnName = "UserName", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name = "[User]", referencedColumnName = "UserName", nullable = false, insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private AccessControl accessControl;
     @JoinColumns({
