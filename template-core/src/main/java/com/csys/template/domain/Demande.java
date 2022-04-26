@@ -6,6 +6,7 @@
 package com.csys.template.domain;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -42,10 +43,10 @@ public class Demande implements Serializable {
     private String codeDemande;
     @Size(max = 10)
     @Column(name = "date_creation", length = 10)
-    private String dateCreation;
+    private LocalDate dateCreation;
     @Size(max = 10)
     @Column(name = "date_validation", length = 10)
-    private String dateValidation;
+    private LocalDate dateValidation;
     @Size(max = 20)
     @Column(name = "user_validation", length = 20)
     private String userValidation;
@@ -85,19 +86,19 @@ public class Demande implements Serializable {
         this.codeDemande = codeDemande;
     }
 
-    public String getDateCreation() {
+    public LocalDate getDateCreation() {
         return dateCreation;
     }
 
-    public void setDateCreation(String dateCreation) {
+    public void setDateCreation(LocalDate dateCreation) {
         this.dateCreation = dateCreation;
     }
 
-    public String getDateValidation() {
+    public LocalDate getDateValidation() {
         return dateValidation;
     }
 
-    public void setDateValidation(String dateValidation) {
+    public void setDateValidation(LocalDate dateValidation) {
         this.dateValidation = dateValidation;
     }
 

@@ -42,11 +42,11 @@ public class DemandeFactory {
 
     public static DemandeDTO demandeToDemandeDTO(Demande demande, boolean lazy) {
         DemandeDTO demandeDTO = new DemandeDTO();
-        demandeDTO.setAccessControl(AccessControlFactory.accessControlToAccessControlDTO(demande.getAccessControl(),true));
+//        demandeDTO.setAccessControl(AccessControlFactory.accessControlToAccessControlDTO(demande.getAccessControl(),true));
         demandeDTO.setCodeDemande(demande.getCodeDemande());
         demandeDTO.setDateCreation(demande.getDateCreation());
         demandeDTO.setDateValidation(demande.getDateValidation());
-        demandeDTO.setGroupUser(GroupUserFactory.groupUserToGroupUserDTO(demande.getGroupUser()));
+//        demandeDTO.setGroupUser(GroupUserFactory.groupUserToGroupUserDTO(demande.getGroupUser()));
         demandeDTO.setMessage(demande.getMessage());
         demandeDTO.setUserCreate(demande.getUserCreate());
         demandeDTO.setUserValidation(demande.getUserValidation());

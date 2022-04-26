@@ -26,12 +26,12 @@ public class ControlRessource {
     @Autowired
     private ControlService controlService;
 
-    @GetMapping("/accesscontrols")
+    @GetMapping("/accessControls")
     public ArrayList<AccessControlDTO> findAll(@RequestParam(required = false) Boolean[] actifs, @RequestParam(required = false) Boolean[] personalises, @RequestParam(required = false) String group) {
         return (ArrayList<AccessControlDTO>) controlService.findAllDTO(actifs, personalises, group);
     }
 
-    @GetMapping("/accesscontrols/{userName}")
+    @GetMapping("accessControl/{userName}")
     public AccessControlDTO findByUserName(@PathVariable String userName) {
         return controlService.findAccessControlDTO(userName);
     }

@@ -5,17 +5,19 @@
  */
 package com.csys.template.repository;
 
+import com.csys.template.domain.AccessControl;
 import com.csys.template.domain.Demande;
 import com.csys.template.domain.EtatDemandeEnum;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.querydsl.QueryDslPredicateExecutor;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author 21694
  */
-public interface DemandeRepository extends JpaRepository<Demande, String> {
+public interface DemandeRepository extends JpaRepository<Demande, String>,QueryDslPredicateExecutor<Demande> {
 
     public Demande findByCodeDemande(String codeDemande);
 

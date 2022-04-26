@@ -25,18 +25,20 @@ public class ModuleRessource {
     @Autowired
     private ModuleService moduleService;
     
-    @GetMapping("/findAllModule")   
+    @GetMapping("/modules")   
     public ArrayList<ModuleDTO> findAll(){
         return  (ArrayList<ModuleDTO>) moduleService.findAllDTO();
     }
     
-    @GetMapping("/findByNumModule/{numModule}")
+    @GetMapping("module/{numModule}")
     public ModuleDTO findByNumModule(@PathVariable String numModule){
         return moduleService.findModuleDTO(numModule);
     }
     
-    @GetMapping("/findAllModuleActif")
+    @GetMapping("/moduleActif")
     public ArrayList<ModuleDTO> findAllActif(@RequestParam boolean afficher){
         return moduleService.findAllDTOAfficher(afficher);
     }
+    
+    
 }

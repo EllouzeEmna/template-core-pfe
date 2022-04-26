@@ -5,12 +5,9 @@
  */
 package com.csys.template.service;
 
-import com.csys.template.domain.AccessControl;
 import com.csys.template.domain.GroupUser;
-import com.csys.template.domain.QAccessControl;
 import com.csys.template.domain.QGroupUser;
 import com.csys.template.dto.GroupUserDTO;
-import com.csys.template.factory.AccessControlFactory;
 import com.csys.template.factory.GroupUserFactory;
 import com.csys.template.repository.GroupUserRepository;
 import com.csys.template.util.WhereClauseBuilder;

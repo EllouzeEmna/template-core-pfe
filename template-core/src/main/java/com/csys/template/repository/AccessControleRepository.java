@@ -15,7 +15,7 @@ import org.springframework.data.querydsl.QueryDslPredicateExecutor;
  * @author 21694
  */
 public interface AccessControleRepository extends JpaRepository<AccessControl, String>,QueryDslPredicateExecutor<AccessControl>{
-    public  AccessControl findByUserName(String userName);
+//    public  AccessControl findByUserName(String userName);
 
     public List<AccessControl> findByActif(boolean actif);
     

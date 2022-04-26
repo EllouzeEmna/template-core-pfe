@@ -8,6 +8,7 @@ package com.csys.template.web.rest;
 import com.csys.template.dto.FormDTO;
 import com.csys.template.service.FormService;
 import java.util.ArrayList;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,13 +25,14 @@ public class FormRessource {
     @Autowired
     private FormService formService;
     
-    @GetMapping("/findAllForm")   
+    @GetMapping("/forms")   
     public ArrayList<FormDTO> findAll(){
         return  (ArrayList<FormDTO>) formService.findAllDTO();
     }
     
-    @GetMapping("/findByFormPK")
-    public FormDTO findByFormPK(@RequestParam String module,@RequestParam String form,@RequestParam String control,@RequestParam String codeMenu){
+    @GetMapping("/form")
+    public List<FormDTO> findByFormPK(@RequestParam (required = false) String module,@RequestParam (required = false) String form,
+            @RequestParam (required = false) String control,@RequestParam (required = false) String codeMenu){
         
         return formService.findFormDTO(module, form, control, codeMenu);
     }

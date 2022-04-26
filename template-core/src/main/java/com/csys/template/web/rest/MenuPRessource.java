@@ -8,6 +8,7 @@ package com.csys.template.web.rest;
 import com.csys.template.dto.MenuPDTO;
 import com.csys.template.service.MenuPService;
 import java.util.ArrayList;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,13 +25,14 @@ public class MenuPRessource {
     @Autowired
     private MenuPService menuPService;
     
-    @GetMapping("/findAllMenu")  
+    @GetMapping("/menus")  
     public ArrayList<MenuPDTO> findAll(){
         return  (ArrayList<MenuPDTO>) menuPService.findAllDTO();
     }
     
-    @GetMapping("/findByMenuPK")
-    public MenuPDTO findByMenuPPK(@RequestParam String module,@RequestParam String codMnp){
-        return menuPService.findMenuPDTO(module, codMnp);
+    @GetMapping("/menu")
+    public List<MenuPDTO> findByMenuPPK(@RequestParam (required = false) String module,@RequestParam (required = false) String codMnp){
+        return menuPService.findMenuPByModuleDTO(module, codMnp);
     }
+    
 }

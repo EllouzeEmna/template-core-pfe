@@ -5,10 +5,10 @@
  */
 package com.csys.template.web.rest;
 
-import com.csys.template.domain.EtatDemandeEnum;
 import com.csys.template.dto.DemandeDTO;
 import com.csys.template.service.DemandeService;
 import java.util.ArrayList;
+import com.csys.template.domain.EtatDemandeEnum;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -26,27 +26,22 @@ import org.springframework.web.bind.annotation.RestController;
  */
 
 @RestController
-@RequestMapping("/demande")
+@RequestMapping("/api")
 public class DemandeRessource {
     @Autowired
     private DemandeService demandeService;
     
-    @GetMapping("/findAll/{lazy}")
-    public ArrayList<DemandeDTO> findAll(@PathVariable boolean lazy){
-        return  (ArrayList<DemandeDTO>) demandeService.findAllDTO(lazy) ;
+    @GetMapping("/{lazy}/{etat}/{codeDemande}")
+    public ArrayList<DemandeDTO> findAllByEtat(@PathVariable boolean lazy,@PathVariable(required = false) EtatDemandeEnum etat,@PathVariable(required = false) String codeDemande){
+        return  (ArrayList<DemandeDTO>) demandeService.findAllDTO(lazy,etat,codeDemande) ;
     }
     
-    @GetMapping("/findAllByEtat/{lazy}/{etat}")
-    public ArrayList<DemandeDTO> findAllByEtat(@PathVariable boolean lazy,@PathVariable EtatDemandeEnum etat){
-        return  (ArrayList<DemandeDTO>) demandeService.findAllDTOByEtat(lazy,etat) ;
+    @GetMapping("/demandes")
+    public ArrayList<DemandeDTO> findDemande(){
+        return   (ArrayList<DemandeDTO>) demandeService.findAllDTO();
     }
     
-    @GetMapping("/findDemande/{codeDemande}")
-    public DemandeDTO findDemande(@PathVariable String codeDemande){
-        return   demandeService.findDemandeDTO(codeDemande);
-    }
-    
-    @PutMapping("/addDemande")
+    @PutMapping("/demande")
     public void addDemande(@Valid @RequestBody DemandeDTO demandeDTO){
         demandeService.saveDTO(demandeDTO);
     }
@@ -56,10 +51,9 @@ public class DemandeRessource {
         demandeService.updateDTO(demandeDTO);
     }
     
-    @DeleteMapping("/delete/{codeDemande")
+    @DeleteMapping("/delete/{codeDemande}")
     public void delete(@PathVariable String codeDemande){
         demandeService.delete(codeDemande);
     }
-    
     
 }

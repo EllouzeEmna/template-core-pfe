@@ -6,6 +6,7 @@
 package com.csys.template.dto;
 
 import com.csys.template.domain.EtatDemandeEnum;
+import java.time.LocalDate;
 import java.util.Collection;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -27,10 +28,10 @@ public class DemandeDTO {
     private String userGrp;
     @NotNull
     @Size(max = 10)
-    private String dateCreation;
+    private LocalDate dateCreation;
     @NotNull
     @Size(max = 10)
-    private String dateValidation;
+    private LocalDate dateValidation;
     @NotNull
     @Size(max = 20)
     private String userValidation;
@@ -86,25 +87,24 @@ public class DemandeDTO {
         this.userGrp = userGrp;
     }
 
-    
-    public String getDateCreation() {
+    public String getUserValidation() {
+        return userValidation;
+    }
+
+    public LocalDate getDateCreation() {
         return dateCreation;
     }
 
-    public void setDateCreation(String dateCreation) {
+    public void setDateCreation(LocalDate dateCreation) {
         this.dateCreation = dateCreation;
     }
 
-    public String getDateValidation() {
+    public LocalDate getDateValidation() {
         return dateValidation;
     }
 
-    public void setDateValidation(String dateValidation) {
+    public void setDateValidation(LocalDate dateValidation) {
         this.dateValidation = dateValidation;
-    }
-
-    public String getUserValidation() {
-        return userValidation;
     }
 
     public void setUserValidation(String userValidation) {

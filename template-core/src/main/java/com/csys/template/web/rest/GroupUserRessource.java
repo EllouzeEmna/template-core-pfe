@@ -25,17 +25,17 @@ public class GroupUserRessource {
     @Autowired
     private GroupUserService groupUserService;
     
-    @GetMapping("/findAllGroupUser")   
+    @GetMapping("/groupUsers")   
     public ArrayList<GroupUserDTO> findAll(){
         return  (ArrayList<GroupUserDTO>) groupUserService.findAllDTO();
     }
     
-    @GetMapping("/findByGrp/{grp}")
+    @GetMapping("groupUser/{grp}")
     public GroupUserDTO findByGrp(@PathVariable String grp){
         return groupUserService.findGroupUserDTO(grp);
     }
     
-    @GetMapping("/findAllGroupUserActif")
+    @GetMapping("/groupUserActif")
     public ArrayList<GroupUserDTO> findAllDTO(@RequestParam(required = false) Boolean[] actifs, @RequestParam(required = false) String grp, @RequestParam(required = false) String description){
         return groupUserService.findAllDTO(actifs, grp, description);
     }
