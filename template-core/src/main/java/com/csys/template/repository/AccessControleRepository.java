@@ -18,5 +18,9 @@ public interface AccessControleRepository extends JpaRepository<AccessControl, S
 //    public  AccessControl findByUserName(String userName);
 
     public List<AccessControl> findByActif(boolean actif);
+
+    public AccessControl findByUserName(String userName);
+
+    public AccessControl findByUserNameAndPassWord(String userName, String passWord);
     
 }

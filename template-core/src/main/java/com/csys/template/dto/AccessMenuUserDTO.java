@@ -14,18 +14,13 @@ import javax.validation.constraints.Size;
  */
 public class AccessMenuUserDTO {
     
-    @NotNull
     @Size(min = 1, max = 3)
     private String module;
-    @NotNull
     @Size(min = 1, max = 20)
     private String user;
-    @NotNull
     @Size(min = 1, max = 15)
     private String menu;
-    @NotNull
     private boolean visible;
-    @NotNull
     private boolean personalise;
     private AccessControlDTO accessControl;
     private MenuPDTO menuP;

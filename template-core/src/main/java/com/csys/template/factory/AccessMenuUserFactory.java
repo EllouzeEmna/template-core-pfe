@@ -57,9 +57,10 @@ public class AccessMenuUserFactory {
     
     public static List<AccessMenuUser> accessMenuUserDTOToAccessMenuUsers(List<AccessMenuUserDTO> accessMenuUserDTOs) {
         List<AccessMenuUser> accessMenuUsers = new ArrayList<>();
+        if(accessMenuUserDTOs!=null){
         accessMenuUserDTOs.forEach(x -> {
             accessMenuUsers.add(accessMenuUserDTOToAccessMenuUser(x));
-        });
+        });}
         return accessMenuUsers;
     }
 }

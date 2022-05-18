@@ -29,7 +29,7 @@ public class AccessControlDTO {
     private Collection<ModuleDTO> moduleCollection;
     private Collection<AccessFormUserDTO> accessFormUserCollection;
     private Collection<DemandeDTO> demandeCollection;
-    private GroupUserDTO groupUser;
+    private Collection<GroupUserDTO> groupUsers;
     private Collection<AccessMenuUserDTO> accessMenuUserCollection;
     private CliniqueDTO clinique;
 
@@ -107,12 +107,12 @@ public class AccessControlDTO {
         this.demandeCollection = demandeCollection;
     }
 
-    public GroupUserDTO getGroupUser() {
-        return groupUser;
+    public Collection<GroupUserDTO> getGroupUsers() {
+        return groupUsers;
     }
 
-    public void setGroupUser(GroupUserDTO groupUser) {
-        this.groupUser = groupUser;
+    public void setGroupUsers(Collection<GroupUserDTO> groupUsers) {
+        this.groupUsers = groupUsers;
     }
 
     public Collection<AccessMenuUserDTO> getAccessMenuUserCollection() {

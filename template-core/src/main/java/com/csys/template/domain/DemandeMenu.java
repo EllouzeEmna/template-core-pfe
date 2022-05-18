@@ -32,7 +32,7 @@ public class DemandeMenu implements Serializable {
     protected DemandeMenuPK demandeMenuPK;
     @Size(max = 50)
     @Column(name = "valider", length = 50)
-    private String valider;
+    private Boolean valider;
     @JoinColumn(name = "code_demande", referencedColumnName = "code_demande", nullable = false, insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Demande demande;
@@ -61,11 +61,11 @@ public class DemandeMenu implements Serializable {
         this.demandeMenuPK = demandeMenuPK;
     }
 
-    public String getValider() {
+    public Boolean getValider() {
         return valider;
     }
 
-    public void setValider(String valider) {
+    public void setValider(Boolean valider) {
         this.valider = valider;
     }
 

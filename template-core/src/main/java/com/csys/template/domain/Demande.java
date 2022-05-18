@@ -41,11 +41,11 @@ public class Demande implements Serializable {
     @Size(min = 1, max = 20)
     @Column(name = "code_demande", nullable = false, length = 20)
     private String codeDemande;
-    @Size(max = 10)
-    @Column(name = "date_creation", length = 10)
+    @NotNull
+    @Column(name = "date_creation")
     private LocalDate dateCreation;
-    @Size(max = 10)
-    @Column(name = "date_validation", length = 10)
+    @NotNull
+    @Column(name = "date_validation")
     private LocalDate dateValidation;
     @Size(max = 20)
     @Column(name = "user_validation", length = 20)
@@ -58,12 +58,18 @@ public class Demande implements Serializable {
     @Size(max = 255)
     @Column(name = "message", length = 255)
     private String message;
+    @Size(max = 20)
+    @Column(name = "user_name", length = 20)
+    private String userName;
+    @Size(max = 20)
+    @Column(name = "user_grp", length = 20)
+    private String userGrp;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "demande")
     private Collection<DemandeModule> demandeModuleCollection;
     @JoinColumn(name = "user_name", referencedColumnName = "UserName", nullable = false, insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private AccessControl accessControl;
-    @JoinColumn(name = "user_grp", referencedColumnName = "Grp", nullable = false)
+    @JoinColumn(name = "user_grp", referencedColumnName = "Grp", nullable = false, insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private GroupUser groupUser;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "demande")
@@ -132,6 +138,22 @@ public class Demande implements Serializable {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getUserGrp() {
+        return userGrp;
+    }
+
+    public void setUserGrp(String userGrp) {
+        this.userGrp = userGrp;
     }
 
     public AccessControl getAccessControl() {

@@ -14,22 +14,20 @@ import javax.validation.constraints.Size;
  */
 public class AccessFormDTO {
     
-    @NotNull
+    
     @Size(min = 1, max = 3)
     private String module;
-    @NotNull
+   
     @Size(min = 1, max = 10)
     private String grp;
-    @NotNull
+
     @Size(min = 1, max = 250)
     private String form;
-    @NotNull
+   
     @Size(min = 1, max = 50)
     private String control;
-    @NotNull
     @Size(min = 1, max = 15)
     private String codeMenu;
-    @NotNull
     private boolean visible;
     private FormDTO form1;
     private GroupUserDTO groupUser;

@@ -15,22 +15,16 @@ import javax.validation.constraints.Size;
  */
 public class FormDTO {
     
-    @NotNull
     @Size(min = 1, max = 3)
     private String module;
-    @NotNull
     @Size(min = 1, max = 250)
     private String form;
-    @NotNull
     @Size(min = 1, max = 50)
     private String control;
-    @NotNull
     @Size(min = 1, max = 15)
     private String codeMenu;
-    @NotNull
     @Size(min = 1, max = 200)
     private String nomForm;
-    @NotNull
     @Size(min = 1, max = 100)
     private String nomControl;
     @Size(max = 200)

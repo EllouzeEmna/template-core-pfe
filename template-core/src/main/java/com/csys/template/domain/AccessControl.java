@@ -20,7 +20,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -29,8 +28,7 @@ import javax.validation.constraints.Size;
  * @author 21694
  */
 @Entity
-@Table(name = "[Access Control]", uniqueConstraints = {
-    @UniqueConstraint(columnNames = {"UserName", "Grp", "Description"})})
+@Table(name = "[Access Control]")
 @NamedQueries({
     @NamedQuery(name = "AccessControl.findAll", query = "SELECT a FROM AccessControl a")})
 public class AccessControl implements Serializable {
@@ -64,9 +62,11 @@ public class AccessControl implements Serializable {
     private Collection<AccessFormUser> accessFormUserCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "accessControl")
     private Collection<Demande> demandeCollection;
-    @JoinColumn(name = "Grp", referencedColumnName = "Grp")
-    @ManyToOne
-    private GroupUser groupUser;
+    @JoinTable(name = "groupe_user", joinColumns = {
+        @JoinColumn(name = "UserName", referencedColumnName = "UserName", nullable = false)}, inverseJoinColumns = {
+        @JoinColumn(name = "Grp", referencedColumnName = "Grp", nullable = false)})
+    @ManyToMany
+    private Collection<GroupUser> groupUsers;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "accessControl")
     private Collection<AccessMenuUser> accessMenuUserCollection;
     @JoinColumn(name = "code_clinique", referencedColumnName = "code_clinique")
@@ -156,13 +156,14 @@ public class AccessControl implements Serializable {
         this.demandeCollection = demandeCollection;
     }
 
-    public GroupUser getGroupUser() {
-        return groupUser;
+    public Collection<GroupUser> getGroupUsers() {
+        return groupUsers;
     }
 
-    public void setGroupUser(GroupUser groupUser) {
-        this.groupUser = groupUser;
+    public void setGroupUsers(Collection<GroupUser> groupUsers) {
+        this.groupUsers = groupUsers;
     }
+
 
     public Collection<AccessMenuUser> getAccessMenuUserCollection() {
         return accessMenuUserCollection;

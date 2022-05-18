@@ -14,17 +14,17 @@ import javax.validation.constraints.Size;
  */
 public class DemandeMenuDTO {
 
-    @NotNull
     @Size(min = 1, max = 15)
     private String codeMenu;
-    @NotNull
     @Size(min = 1, max = 20)
     private String codeDemande;
-    @NotNull
     @Size(min = 1, max = 3)
     private String codeModule;
     @Size(max = 50)
-    private String valider;
+    private Boolean valider;
+    
+    private Boolean validerNew;
+    
     private MenuPDTO menuP;
 
     public String getCodeMenu() {
@@ -51,12 +51,20 @@ public class DemandeMenuDTO {
         this.codeModule = codeModule;
     }
 
-    public String getValider() {
+    public Boolean getValider() {
         return valider;
     }
 
-    public void setValider(String valider) {
+    public void setValider(Boolean valider) {
         this.valider = valider;
+    }
+
+    public Boolean getValiderNew() {
+        return validerNew;
+    }
+
+    public void setValiderNew(Boolean validerNew) {
+        this.validerNew = validerNew;
     }
 
     public MenuPDTO getMenuP() {

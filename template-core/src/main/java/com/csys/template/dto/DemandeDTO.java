@@ -20,17 +20,15 @@ public class DemandeDTO {
     @NotNull
     @Size(min = 1, max = 20)
     private String codeDemande;
-    @NotNull
-    @Size(min = 1, max = 20)
+    @Size(max = 20)
     private String userName;
-    @NotNull
-    @Size(min = 1, max = 10)
+    @Size(max = 10)
     private String userGrp;
     @NotNull
-    @Size(max = 10)
+  
     private LocalDate dateCreation;
     @NotNull
-    @Size(max = 10)
+  
     private LocalDate dateValidation;
     @NotNull
     @Size(max = 20)
@@ -47,6 +45,7 @@ public class DemandeDTO {
 
     private Collection<DemandeFormDTO> demandeFormCollection;
     private Collection<DemandeMenuDTO> demandeMenuCollection;
+
     public AccessControlDTO getAccessControl() {
         return accessControl;
     }
@@ -118,8 +117,6 @@ public class DemandeDTO {
     public void setUserCreate(String userCreate) {
         this.userCreate = userCreate;
     }
-
-   
 
     public String getMessage() {
         return message;

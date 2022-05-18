@@ -14,14 +14,16 @@ import javax.validation.constraints.Size;
  */
 public class DemandeModuleDTO {
 
-    @NotNull
     @Size(min = 1, max = 3)
     private String numModule;
-    @NotNull
+    
     @Size(min = 1, max = 20)
     private String codeDemande;
     @Size(max = 50)
-    private String valider;
+    private Boolean valider;
+    
+    private Boolean validerNew; 
+    
     private ModuleDTO module;
 
     public String getNumModule() {
@@ -40,12 +42,20 @@ public class DemandeModuleDTO {
         this.codeDemande = codeDemande;
     }
 
-    public String getValider() {
+    public Boolean getValider() {
         return valider;
     }
 
-    public void setValider(String valider) {
+    public void setValider(Boolean valider) {
         this.valider = valider;
+    }
+
+    public Boolean getValiderNew() {
+        return validerNew;
+    }
+
+    public void setValiderNew(Boolean validerNew) {
+        this.validerNew = validerNew;
     }
 
     public ModuleDTO getModule() {

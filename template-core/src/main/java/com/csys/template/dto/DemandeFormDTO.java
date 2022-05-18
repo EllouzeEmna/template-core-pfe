@@ -14,23 +14,20 @@ import javax.validation.constraints.Size;
  */
 public class DemandeFormDTO {
 
-    @NotNull
     @Size(min = 1, max = 250)
     private String codeForm;
-    @NotNull
     @Size(min = 1, max = 3)
     private String codeModule;
-    @NotNull
     @Size(min = 1, max = 15)
     private String codeMenu;
-    @NotNull
     @Size(min = 1, max = 20)
     private String codeDemande;
-    @NotNull
     @Size(min = 1, max = 50)
     private String codeControl;
     
     private Boolean valider;
+    
+    private Boolean validerNew;
     
     private FormDTO form;
 
@@ -75,6 +72,14 @@ public class DemandeFormDTO {
 
     public void setCodeControl(String codeControl) {
         this.codeControl = codeControl;
+    }
+
+    public Boolean getValiderNew() {
+        return validerNew;
+    }
+
+    public void setValiderNew(Boolean validerNew) {
+        this.validerNew = validerNew;
     }
 
     public Boolean getValider() {

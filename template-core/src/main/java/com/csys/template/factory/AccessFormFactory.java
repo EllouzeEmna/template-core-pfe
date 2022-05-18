@@ -56,9 +56,11 @@ public class AccessFormFactory {
     
     public static List<AccessForm> accessFormDTOToAccessForms(List<AccessFormDTO> accessFormDTOs) {
         List<AccessForm> accessForms = new ArrayList<>();
+        if(accessFormDTOs!=null){
         accessFormDTOs.forEach(x -> {
             accessForms.add(accessFormDTOToAccessForm(x));
         });
+        }
         return accessForms;
     }
 }

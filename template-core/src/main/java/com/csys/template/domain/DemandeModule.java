@@ -31,7 +31,7 @@ public class DemandeModule implements Serializable {
     protected DemandeModulePK demandeModulePK;
     @Size(max = 50)
     @Column(name = "valider", length = 50)
-    private String valider;
+    private Boolean valider;
     @JoinColumn(name = "code_demande", referencedColumnName = "code_demande", nullable = false, insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Demande demande;
@@ -58,11 +58,11 @@ public class DemandeModule implements Serializable {
         this.demandeModulePK = demandeModulePK;
     }
 
-    public String getValider() {
+    public Boolean getValider() {
         return valider;
     }
 
-    public void setValider(String valider) {
+    public void setValider(Boolean valider) {
         this.valider = valider;
     }
 

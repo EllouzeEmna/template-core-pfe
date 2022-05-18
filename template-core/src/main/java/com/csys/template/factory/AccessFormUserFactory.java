@@ -57,9 +57,11 @@ public class AccessFormUserFactory {
     
     public static List<AccessFormUser> accessFormUserDTOToAccessFormUsers(List<AccessFormUserDTO> accessFormUserDTOs) {
         List<AccessFormUser> accessFormUsers = new ArrayList<>();
+        if(accessFormUserDTOs!=null){
         accessFormUserDTOs.forEach(x -> {
             accessFormUsers.add(accessFormUserDTOToAccessFormUser(x));
         });
+        }
         return accessFormUsers;
     }
 }

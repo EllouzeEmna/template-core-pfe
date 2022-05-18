@@ -6,7 +6,6 @@
 package com.csys.template.service;
 
 import com.csys.template.domain.MenuP;
-import com.csys.template.domain.MenuPPK;
 import com.csys.template.domain.QMenuP;
 import com.csys.template.dto.MenuPDTO;
 import com.csys.template.factory.MenuPFactory;

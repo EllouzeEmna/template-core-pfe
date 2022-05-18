@@ -63,9 +63,10 @@ public class ModuleFactory {
     
     public static List<Module> moduleDTOToModules(List<ModuleDTO> moduleDTOs) {
         List<Module> modules = new ArrayList<>();
+        if(moduleDTOs!=null){
         moduleDTOs.forEach(x -> {
             modules.add(moduleDTOToModule(x));
-        });
+        });}
         return modules;
     }
 }

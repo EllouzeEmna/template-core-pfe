@@ -60,9 +60,10 @@ public class MenuPFactory {
     
     public static List<MenuP> menuPDTOToMenuPs(List<MenuPDTO> menuPDTOs) {
         List<MenuP> menuPs = new ArrayList<>();
+        if(menuPDTOs!=null){
         menuPDTOs.forEach(x -> {
             menuPs.add( menuPDTOToMenuP(x));
-        });
+        });}
         return menuPs;
     }
 }

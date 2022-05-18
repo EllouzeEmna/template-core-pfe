@@ -28,8 +28,9 @@ public class DemandeFactory {
         demande.setAccessControl(AccessControlFactory.accessControlDTOToAccessControl(demandeDTO.getAccessControl()));
         demande.setDateCreation(demandeDTO.getDateCreation());
         demande.setDateValidation(demandeDTO.getDateValidation());
+        demande.setUserName(demandeDTO.getUserName());
+        demande.setUserGrp(demandeDTO.getUserGrp());
         demande.setCodeDemande(demandeDTO.getCodeDemande());
-        demande.setGroupUser(GroupUserFactory.groupUserDTOToGroupUser(demandeDTO.getGroupUser()));
         demande.setMessage(demandeDTO.getMessage());
         demande.setUserCreate(demandeDTO.getUserCreate());
         demande.setUserValidation(demandeDTO.getUserValidation());
@@ -42,16 +43,18 @@ public class DemandeFactory {
 
     public static DemandeDTO demandeToDemandeDTO(Demande demande, boolean lazy) {
         DemandeDTO demandeDTO = new DemandeDTO();
-//        demandeDTO.setAccessControl(AccessControlFactory.accessControlToAccessControlDTO(demande.getAccessControl(),true));
         demandeDTO.setCodeDemande(demande.getCodeDemande());
         demandeDTO.setDateCreation(demande.getDateCreation());
         demandeDTO.setDateValidation(demande.getDateValidation());
-//        demandeDTO.setGroupUser(GroupUserFactory.groupUserToGroupUserDTO(demande.getGroupUser()));
         demandeDTO.setMessage(demande.getMessage());
         demandeDTO.setUserCreate(demande.getUserCreate());
         demandeDTO.setUserValidation(demande.getUserValidation());
-//        demandeDTO.setEtat(demande.getEtat());
+        demandeDTO.setUserName(demande.getUserName());
+        demandeDTO.setUserGrp(demande.getUserGrp());
+        demandeDTO.setEtat(demande.getEtat());
         if (!lazy) {
+//        demandeDTO.setAccessControl(AccessControlFactory.accessControlToAccessControlDTO(demande.getAccessControl(),true));
+//        demandeDTO.setGroupUser(GroupUserFactory.groupUserToGroupUserDTO(demande.getGroupUser()));
             demandeDTO.setDemandeFormCollection(DemandeFormFactory.demandeFormToDemandeFormDTOs((List<DemandeForm>) demande.getDemandeFormCollection()));
             demandeDTO.setDemandeMenuCollection(DemandeMenuFactory.demandeMenuToDemandeMenuDTOs((List<DemandeMenu>) demande.getDemandeMenuCollection()));
             demandeDTO.setDemandeModuleCollection(DemandeModuleFactory.demandeModuleToDemandeModuleDTOs((List<DemandeModule>) demande.getDemandeModuleCollection()));

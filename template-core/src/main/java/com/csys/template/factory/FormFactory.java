@@ -66,9 +66,11 @@ public class FormFactory {
     
     public static List<Form> formDTOToForms(List<FormDTO> formDTOs) {
         List<Form> forms = new ArrayList<>();
+        if(formDTOs!=null){
         formDTOs.forEach(x -> {
             forms.add(formDTOToForm(x));
         });
+        }
         return forms;
     }
 }

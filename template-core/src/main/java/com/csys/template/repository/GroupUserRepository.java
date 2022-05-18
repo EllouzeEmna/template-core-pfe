@@ -15,6 +15,5 @@ import org.springframework.data.querydsl.QueryDslPredicateExecutor;
  */
 public interface GroupUserRepository extends JpaRepository<GroupUser, String> ,QueryDslPredicateExecutor<GroupUser> {
 
-    public GroupUser findByGrp(String grp);
     
 }

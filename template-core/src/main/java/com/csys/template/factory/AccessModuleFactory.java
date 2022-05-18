@@ -3,16 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.csys.template.domain;
+package com.csys.template.factory;
 
 /**
  *
  * @author 21694
  */
-public enum EtatDemandeEnum {
-    NonValide,
-    Valide,
-    PartielementValide,
-    Refuser;
+public class AccessModuleFactory {
 
 }

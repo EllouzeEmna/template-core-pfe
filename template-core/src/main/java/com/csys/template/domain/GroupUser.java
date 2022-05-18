@@ -55,7 +55,7 @@ public class GroupUser implements Serializable {
     private Collection<AccessMenu> accessMenuCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "groupUser")
     private Collection<AccessForm> accessFormCollection;
-    @OneToMany(mappedBy = "groupUser")
+    @OneToMany(mappedBy = "groupUsers")
     private Collection<AccessControl> accessControlCollection;
 
     public GroupUser() {
